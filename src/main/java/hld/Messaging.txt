@@ -1,0 +1,2 @@
+Design a highly scalable system which allows users to chat with one another like whatsapp
+and has functionality to get last 1 weeks chat history very quickly.
