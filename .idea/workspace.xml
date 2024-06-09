@@ -4,61 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bde41ea5-33bf-4407-9143-754ad9f38bed" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="bde41ea5-33bf-4407-9143-754ad9f38bed" name="Default Changelist" comment="Minor fixes and improvements">
       <change afterPath="$PROJECT_DIR$/q2-test9.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/q2-test9_soln.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/algo/Kadane.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/algo/LargestMonotonicSubsequence.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/algo/MooreVoting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/arrays/Candy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/arrays/CargoShip.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/arrays/MaxPerimeterTriangle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/arrays/MinLectureHalls.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/arrays/RebuildQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/arrays/RightPosition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/arrays/SubarrayModSum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/arrays/Sudoku.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dp/ArrayOptimize.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dp/Artitmetics.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dp/BestRoute.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dp/DartScore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dp/Knapsack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dp/LongestOverlappingSubsequence.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/graph/DisjointSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/graph/MinLineChange.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/graph/RottingMango.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hld/Messaging.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hld/TinyURL.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/Chess.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/LFRUCache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/LRUCache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/LibraryManagementSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/PizzaDelivery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/UpdateQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/messaging/Driver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/messaging/Problem.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/messaging/impl/ConsumerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/messaging/impl/MessageBrokerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/messaging/impl/MessageQueueImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/messaging/impl/ProducerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/messaging/interfaces/Consumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/messaging/interfaces/MessageBroker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/messaging/interfaces/MessageHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/messaging/interfaces/MessageQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/messaging/interfaces/Producer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lld/messaging/model/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/string/EqualOccurence.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/string/LongestBalancedParenthesis.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/string/PermuatationPalindrome.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/string/PrefixToPostfix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tree/AVLTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tree/BurningBST.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tree/LargestBST.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tree/PathSum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tree/TreeNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tree/test.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/string/FreqSort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/string/test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/python/memoize.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Interview.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Interview.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/algo/Kadane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/algo/Kadane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/arrays/RightPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/arrays/RightPosition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/arrays/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/arrays/Sudoku.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dp/ArrayOptimize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dp/ArrayOptimize.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dp/Artitmetics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dp/Artitmetics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dp/BestRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dp/BestRoute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/graph/RottingMango.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/graph/RottingMango.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +28,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Python Script" />
         <option value="Class" />
       </list>
     </option>
@@ -83,16 +44,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "E:/Archive/Work/Interview",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/AppData/Local/Microsoft/WindowsApps/python.exe&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/lld/messaging" />
@@ -102,13 +64,13 @@
       <recent name="$PROJECT_DIR$/.idea" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RightPosition">
-    <configuration name="BurningBST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="tree.BurningBST" />
+  <component name="RunManager" selected="Python.memoize">
+    <configuration name="ArrayOptimize" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dp.ArrayOptimize" />
       <module name="Interview" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="tree.*" />
+          <option name="PATTERN" value="dp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -116,12 +78,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MinLectureHalls" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="arrays.MinLectureHalls" />
+    <configuration name="Artitmetics" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dp.Artitmetics" />
       <module name="Interview" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="arrays.*" />
+          <option name="PATTERN" value="dp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -142,12 +104,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RebuildQueue" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="arrays.RebuildQueue" />
+    <configuration name="RPCStream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lld.RPCStream" />
       <module name="Interview" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="arrays.*" />
+          <option name="PATTERN" value="lld.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -155,26 +117,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RightPosition" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="arrays.RightPosition" />
+    <configuration name="memoize" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Interview" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="arrays.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/main/python" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/main/python/memoize.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.RightPosition" />
-        <item itemvalue="Application.BurningBST" />
-        <item itemvalue="Application.RebuildQueue" />
+        <item itemvalue="Python.memoize" />
         <item itemvalue="Application.MinLineChange" />
-        <item itemvalue="Application.MinLectureHalls" />
+        <item itemvalue="Application.Artitmetics" />
+        <item itemvalue="Application.ArrayOptimize" />
+        <item itemvalue="Application.RPCStream" />
       </list>
     </recent_temporary>
   </component>
@@ -187,7 +157,63 @@
       <option name="presentableId" value="Default" />
       <updated>1638970314869</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial Commit">
+      <created>1713942510761</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713942510761</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Burning BST Fix &amp; Improvement">
+      <created>1714730951092</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714730951092</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Adding ExchangeRateCalculator">
+      <created>1717096915532</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717096915532</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Adding Best Stock profit Calculator">
+      <created>1717266789159</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717266789159</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Adding LLD problems">
+      <created>1717901324179</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1717901324179</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Commit" />
+    <MESSAGE value="Burning BST Fix &amp; Improvement" />
+    <MESSAGE value="Adding ExchangeRateCalculator" />
+    <MESSAGE value="Adding Best Stock profit Calculator" />
+    <MESSAGE value="Adding LLD problems" />
+    <MESSAGE value="Minor fixes and improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor fixes and improvements" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
