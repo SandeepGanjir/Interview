@@ -13,50 +13,8 @@ import java.util.Random;
  */
 public class LFRUCache {
     public static void main(String[] args) {
-        String cloneDbName  = "";
-        String query = " select name from centralcdb_admin_clone_tenant_database " +
-                " where ((name = ? and type = ?)" + (cloneDbName == null ? ")" : " or (name = ? or source_name = ?))") +
-                " and type in (?, ?) ";
-        System.out.println(query);
-
         System.out.println("Least Frequently Recently Used cache system");
         testLRFU();
-        System.out.println(testAbbreviate("befghG", "EFG"));
-        short h = 5;
-        h++;
-        System.out.println(h);
-        for (int i=0,j=1; i<10; i++);
-        switch (h) {
-            case 4+3:;
-            case 5+1:;
-        }
-    }
-
-    private static boolean testAbbreviate(String a, String b) {
-        int jLower = 0, j = 0;
-        for (int i = 0; i < a.length(); i++) {
-            if (Character.isUpperCase(a.charAt(i))) {
-                if (j < b.length() && a.charAt(i) == b.charAt(j)) {
-                    j++;
-                    jLower = j;
-                } else {
-                    for (; jLower <= j; jLower++) {
-                        if (jLower < b.length() && a.charAt(i) == b.charAt(jLower)) {
-                            j = jLower+1;
-                            break;
-                        }
-                    }
-                    if (jLower >= j) {
-                        return false;
-                    }
-                }
-            } else {
-                if (j < b.length() && Character.toUpperCase(a.charAt(i)) == b.charAt(j)) {
-                    j++;
-                }
-            }
-        }
-        return (j == b.length());
     }
 
     private static void testLRFU() {
