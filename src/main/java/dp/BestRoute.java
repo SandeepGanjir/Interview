@@ -55,15 +55,15 @@ public class BestRoute {
             if (dest.get(i) > lastPoint)
                 lastPoint = dest.get(i);
         }
-        long[] incomes = new long[(int) (lastPoint + 1)];
+        long[] positions = new long[(int) (lastPoint + 1)];
         long maxIncome = 0;
         int idx = 0;
-        for (int i = 0; i < incomes.length; i++) {
-            maxIncome = Math.max(maxIncome, incomes[i]);
+        for (int i = 0; i < positions.length; i++) {
+            maxIncome = Math.max(maxIncome, positions[i]);
             if (idx < src.size() && i == src.get(idx).intValue()) {
                 long incomeWithCurrTrip = dest.get(idx) - src.get(idx) + tips.get(idx) + maxIncome;
                 int destIdx = dest.get(idx).intValue();
-                incomes[destIdx] = Math.max(incomes[destIdx], incomeWithCurrTrip);
+                positions[destIdx] = Math.max(positions[destIdx], incomeWithCurrTrip);
                 idx++;
             }
         }

@@ -51,26 +51,26 @@ public class RottingMango {
             }
         }
 
-        return steps;
+        return steps-1;
     }
 
     private List<Integer[]> propagateRot(List<Integer[]> rotten, int[][] ar) {
-        List<Integer []> nextRottent = new ArrayList<>();
+        List<Integer []> nextRotten = new ArrayList<>();
         for (Integer[] pos: rotten) {
-            addIfPossibleToRot(ar, pos[0]-1, pos[1], nextRottent);
-            addIfPossibleToRot(ar, pos[0]+1, pos[1], nextRottent);
-            addIfPossibleToRot(ar, pos[0], pos[1]-1, nextRottent);
-            addIfPossibleToRot(ar, pos[0], pos[1]+1, nextRottent);
+            addIfPossibleToRot(ar, pos[0]-1, pos[1], nextRotten);
+            addIfPossibleToRot(ar, pos[0]+1, pos[1], nextRotten);
+            addIfPossibleToRot(ar, pos[0], pos[1]-1, nextRotten);
+            addIfPossibleToRot(ar, pos[0], pos[1]+1, nextRotten);
         }
-        return nextRottent;
+        return nextRotten;
     }
 
-    private void addIfPossibleToRot(int[][] ar, Integer i, Integer j, List<Integer[]> nextRottent) {
+    private void addIfPossibleToRot(int[][] ar, Integer i, Integer j, List<Integer[]> nextRotten) {
         if (i!=null && i>=0 && i<ar.length && j!=null && j>=0 && j<ar[i].length) {
             if (ar[i][j]==1) {
                 ar[i][j] = 2;
                 Integer[] location = {i, j};
-                nextRottent.add(location);
+                nextRotten.add(location);
             }
         }
     }

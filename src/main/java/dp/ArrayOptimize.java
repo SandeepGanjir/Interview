@@ -13,12 +13,13 @@ public class ArrayOptimize {
         ArrayOptimize ins = new ArrayOptimize();
 
         int[] Ar = {14, 7, 19, 8, 12, 12, 3, 8, 9, 14};//{3, 10, 4, 18, 7, 10, 14, 14, 1, 11};
-        System.out.println("Maximum value is : " +ins.getOptimum(Ar));
+        System.out.println("Given : \n" + Arrays.toString(Ar));
+        System.out.println("Maximum value is : " + ins.getOptimum(Ar));
     }
 
     public int getOptimum(int[] Ar) {
         Integer[] opt = optimize(Ar, null, false);
-        System.out.println(Arrays.toString(opt));
+        System.out.println("Solution : \n" + Arrays.toString(opt));
 
         opt = optimize(Ar, opt, true);
         System.out.println(Arrays.toString(opt));

@@ -24,7 +24,7 @@ public class RightPosition {
         if (idx < 0)
             System.out.println("\nGiven Array : " + Arrays.toString(Ar) + "\n does not have a valid solution");
         else
-            System.out.println("For given Array : " + Arrays.toString(Ar) + "\n1st element at right position is : " + Ar[idx]);
+            System.out.println("\nFor given Array : " + Arrays.toString(Ar) + "\n1st element at right position is : " + Ar[idx]);
     }
 
     public int getRightPositionElement(int[] Ar) {

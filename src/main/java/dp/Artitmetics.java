@@ -37,27 +37,27 @@ public class Artitmetics {
             return false;
 
         boolean[][] dp = new boolean[2][m];
-        dp[1][A[0]%m] = true;
+        dp[0][A[0]%m] = true;
 
         for (int j = 1; j < A.length; j++) {
             for (int k = 0; k < m; k++) {
-                dp[(j + 1) % 2][k] = false;
+                dp[j % 2][k] = false;
             }
             for (int i = 0; i < m; i++) {
-                if (dp[j % 2][i]) {
-                    dp[(j + 1) % 2][(i + A[j]) % m] = true;
-                    dp[(j + 1) % 2][((i - A[j]) % m + m) % m] = true;
-                    dp[(j + 1) % 2][(i * A[j]) % m] = true;
+                if (dp[(j-1) % 2][i]) {
+                    dp[j % 2][(i + A[j]) % m] = true;
+                    dp[j % 2][((i - A[j]) % m + m) % m] = true;
+                    dp[j % 2][(i * A[j]) % m] = true;
                 }
             }
             //System.out.println(Arrays.toString(dp[(j+1)%2]));
         }
 
-        return dp[A.length % 2][0];
+        return dp[(A.length-1) % 2][0];
     }
 
     private static void inputArrayWithFalse() {
-        final int ARRAY_SIZE = 8;
+        final int ARRAY_SIZE = 9;
         final int MAX_N_LOOKUP_VALUE = 1000;
 
         boolean flag = true;

@@ -68,22 +68,18 @@ public class Sudoku {
         return true;
     }
 
-    int count = 0;
+    
     private Set<Integer> generatePossibleVals(int[][] sudoku, int i, int j) {
         //count++;
-        Set<Integer> vals = new HashSet();
+        Set<Integer> vals = new HashSet<>();
         for (int k = 1; k <= 9; k++) {
             vals.add(k);
         }
         for (int k = 0; k < sudoku.length; k++) {
-            if (sudoku[k][j] != 0) {
-                vals.remove(sudoku[k][j]);
-            }
+            vals.remove(sudoku[k][j]);
         }
         for (int k = 0; k < sudoku[i].length; k++) {
-            if (sudoku[i][k] != 0) {
-                vals.remove(sudoku[i][k]);
-            }
+            vals.remove(sudoku[i][k]);
         }
         int a = i / 3;
         int b = j / 3;
