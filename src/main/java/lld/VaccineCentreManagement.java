@@ -47,6 +47,10 @@ import java.util.*;
  * 7. class VaccinationDetail
  * 8. class RegistrationDetail
  * 9. class VaccinationCentre
+ *
+ * ######### DATABASE TABLES & DATA ACCESS #########
+ * Patient Table
+ * Staff(Doctor) Table
  */
 
 enum VaccineType{

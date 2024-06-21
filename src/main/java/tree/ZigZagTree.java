@@ -19,7 +19,7 @@ public class ZigZagTree {
 
     public static void main(String[] args) {
         ZigZagTree ins = new ZigZagTree();
-        Node root = ins.buildTree("1 2 3 4 5 6 7 8 9 10 11 12");
+        Node root = ins.buildTree("1 2 3 4 5 6 7 8 9 10 11 12 13 14");
         ins.printZigZagTraversal(root);
     }
 
