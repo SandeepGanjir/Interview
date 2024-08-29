@@ -273,8 +273,8 @@ class LogManager {
     }
 
     public static void close() {
-        Singleton.instance.processLogs();
         Singleton.instance.scheduler.shutdown();
+        Singleton.instance.processLogs();
     }
 }
 
