@@ -2,6 +2,7 @@ package lld;
 
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -137,6 +138,9 @@ class ConsumerImpl implements Consumer {
     }
 
     public void consume(String message) {
+        try {
+            Thread.sleep(new Random().nextInt(500));
+        } catch (Exception e) {}
         System.out.println(String.format(FORMAT, name, message));
     }
 
@@ -147,7 +151,7 @@ class ConsumerImpl implements Consumer {
 
     public void close() {
         this.executor.shutdown();
-        Broker.getInstance().poll(this);
+        processMessages();
     }
 }
 
