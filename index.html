@@ -439,15 +439,15 @@
                 <td class="column-10">${getHoldingVal(product.holding)}</td>
                 <td class="column-a1" style="background-color: ${nseColor}">${product.nse_tick.average_traded_price}</td>
                 <td class="column-a2">${product.nse_tick.volume_traded}</td>
-                <td class="column-a3 buy" style="background-color: ${nseBuyColor}">${getHighlightedValue(product.nse_tick.buy.price, product.nse_buy)} ${product.nse_tick.buy.quantity} : ${product.nse_tick.buy.total_quantity}</td>
+                <td class="column-a3 buy" style="background-color: ${nseBuyColor}">${getHighlightedValue(product.nse_tick.buy.price, product.nse_buy)} ${product.nse_tick.buy.quantity}:${product.nse_tick.buy.total_quantity}</td>
                 <td class="column-a4 buy">${product.nse_buy ? `${product.nse_buy.price} ${product.nse_buy.filled}/${product.nse_buy.quantity}` : ''}</td>
-                <td class="column-a5 sell" style="background-color: ${nseSellColor}">${getHighlightedValue(product.nse_tick.sell.price, product.nse_sell)} ${product.nse_tick.sell.quantity} : ${product.nse_tick.sell.total_quantity}</td>
+                <td class="column-a5 sell" style="background-color: ${nseSellColor}">${getHighlightedValue(product.nse_tick.sell.price, product.nse_sell)} ${product.nse_tick.sell.quantity}:${product.nse_tick.sell.total_quantity}</td>
                 <td class="column-a6 sell">${product.nse_sell ? `${product.nse_sell.price} ${product.nse_sell.filled}/${product.nse_sell.quantity}` : ''}</td>
                 <td class="column-b1" style="background-color: ${bseColor}">${product.bse_tick.average_traded_price}</td>
                 <td class="column-b2">${product.bse_tick.volume_traded}</td>
-                <td class="column-b3 buy" style="background-color: ${bseBuyColor}">${getHighlightedValue(product.bse_tick.buy.price, product.bse_buy)} ${product.bse_tick.buy.quantity} : ${product.bse_tick.buy.total_quantity}</td>
+                <td class="column-b3 buy" style="background-color: ${bseBuyColor}">${getHighlightedValue(product.bse_tick.buy.price, product.bse_buy)} ${product.bse_tick.buy.quantity}:${product.bse_tick.buy.total_quantity}</td>
                 <td class="column-b4 buy">${product.bse_buy ? `${product.bse_buy.price} ${product.bse_buy.filled}/${product.bse_buy.quantity}` : ''}</td>
-                <td class="column-b5 sell" style="background-color: ${bseSellColor}">${getHighlightedValue(product.bse_tick.sell.price, product.bse_sell)} ${product.bse_tick.sell.quantity} : ${product.bse_tick.sell.total_quantity}</td>
+                <td class="column-b5 sell" style="background-color: ${bseSellColor}">${getHighlightedValue(product.bse_tick.sell.price, product.bse_sell)} ${product.bse_tick.sell.quantity}:${product.bse_tick.sell.total_quantity}</td>
                 <td class="column-b6 sell">${product.bse_sell ? `${product.bse_sell.price} ${product.bse_sell.filled}/${product.bse_sell.quantity}` : ''}</td>
             `;
 
