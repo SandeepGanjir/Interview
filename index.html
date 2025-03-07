@@ -220,26 +220,73 @@
         </tbody>
     </table>
 </div>
-
 <script>
 (async () => {
     async function getUrlFromGit() {
         try {
             const configResponse = await fetch('https://raw.githubusercontent.com/SandeepGanjir/Interview/master/src/main/python/Config.json');
             const config = await configResponse.json();
-            return 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(config.url);
+            return config.url;
         } catch (error) {
             console.error("GitHub Fetch failed:", error);
         }
     }
-    const url = await getUrlFromGit();
+    const baseUrl = await getUrlFromGit();
+    const proxyService = 'https://api.codetabs.com/v1/proxy?quest=';
+    const ENCRYPTION_SECRET = "KwezqUwQjvDFZ/TyEo80wshFIl6m13NabQDypMf/NomE1SQ4hY/20Lt9Y0BthReO";
+
+    async function encryptData(data) {
+        const text = JSON.stringify(data);
+        const dataBuffer = new TextEncoder().encode(text);
+
+        const iv = crypto.getRandomValues(new Uint8Array(12));
+        const salt = crypto.getRandomValues(new Uint8Array(16));
+
+        // Derive key from secret
+        const keyMaterial = await crypto.subtle.importKey(
+            "raw",
+            new TextEncoder().encode(ENCRYPTION_SECRET),
+            { name: "PBKDF2" },
+            false,
+            ["deriveKey"]
+        );
+
+        const key = await crypto.subtle.deriveKey(
+            { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
+            keyMaterial,
+            { name: "AES-GCM", length: 256 },
+            false,
+            ["encrypt"]
+        );
+
+        // Encrypt data
+        const encrypted = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, dataBuffer);
+        const ciphertext = new Uint8Array(encrypted.slice(0, -16));
+        const tag = new Uint8Array(encrypted.slice(-16));
+
+        const combined = new Uint8Array(iv.length + salt.length + ciphertext.length + tag.length);
+        combined.set(iv, 0);
+        combined.set(salt, iv.length);
+        combined.set(ciphertext, iv.length + salt.length);
+        combined.set(tag, iv.length + salt.length + ciphertext.length);
+
+        return btoa(String.fromCharCode(...combined)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    }
+
+    async function proxyFetch(data = {}) {
+        // const dataParam = encodeURIComponent(JSON.stringify(data));
+        const encryptedData = await encryptData(data);
+        const finalUrl = `${baseUrl}/api?data=${encryptedData}`;
+        const proxiedUrl = `${proxyService}${encodeURIComponent(finalUrl)}`;
+        return fetch(proxiedUrl);
+    }
 
     let currentUserId = '';
     let currentPassword = '';
 
     async function fetchData() {
         try {
-            const response = await fetch(`${url}/instruments`);
+            const response = await proxyFetch({operation: 'get'});
             if (response.status === 401) {
                 showAuthUI();
                 return;
@@ -275,13 +322,10 @@
         currentPassword = document.getElementById('password').value;
 
         try {
-            const response = await fetch(`${url}/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    user_id: currentUserId,
-                    password: currentPassword
-                })
+            const response = await proxyFetch({
+                operation: 'login',
+                user_id: currentUserId,
+                password: currentPassword
             });
 
             if (response.status === 200) {
@@ -330,20 +374,17 @@
 
         const code = document.getElementById('twofaCode').value;
         try {
-            const response = await fetch(`${url}/login`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    user_id: currentUserId,
-                    password: currentPassword,
-                    code: code
-                })
+            const response = await proxyFetch({
+                operation: 'login',
+                user_id: currentUserId,
+                password: currentPassword,
+                code: code
             });
 
             if (response.ok) {
                 document.getElementById('twofaError').textContent = '';
                 try {
-                    const instrumentsResponse = await fetch(`${url}/instruments`);
+                    const instrumentsResponse = await proxyFetch({operation: 'get'});
                     if (instrumentsResponse.ok) {
                         const data = await instrumentsResponse.json();
                         showMainContent(data);
@@ -370,9 +411,7 @@
     async function handleLogout(event) {
         event.preventDefault();
         try {
-            const response = await fetch(`${url}/login`, {
-                method: 'DELETE'
-            });
+            const response = await proxyFetch({operation: 'logout'});
             if (response.ok) {
                 alert('Logged out successfully.');
                 window.location.reload();
@@ -388,14 +427,14 @@
     async function handleReload(event) {
         event.preventDefault();
         try {
-            const response = await fetch(`${url}/instruments`, {
-                method: 'DELETE'
-            });
+            const response = await proxyFetch({operation: 'reload'});
             if (response.ok) {
                 alert('DB Reloaded successfully.');
                 window.location.reload();
             } else {
-                alert('DB Reload failed. Try again.');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 30000);
             }
         } catch (error) {
             console.error('DB Reload error:', error);
