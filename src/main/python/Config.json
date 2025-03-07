@@ -1,1 +1,12 @@
-{"url": "https://3a82-2406-7400-63-46f6-44c6-61dc-a6cc-581b.ngrok-free.app"}
+{
+  "url": "https://3a82-2406-7400-63-46f6-44c6-61dc-a6cc-581b.ngrok-free.app",
+  "product": {
+        "tick_subscribe_threshold": 600,
+        "risk_free_rate": 8.0,
+        "settlement_date_offset": 1
+    },
+    "order": {
+        "nse_circuit_limit": 0.1,
+        "bse_circuit_limit": 0.1
+    }
+}
