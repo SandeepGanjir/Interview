@@ -1,8 +1,8 @@
 {
     "url": "https://4298-49-207-192-127.ngrok-free.app",
     "product": {
-        "tick_subscribe_threshold": 500,
-        "risk_free_rate": 7.5,
+        "tick_subscribe_threshold": 600,
+        "risk_free_rate": 8.0,
         "settlement_date_offset": 1
     },
     "order": {
