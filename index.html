@@ -73,6 +73,27 @@
             color: #666 !important;
             text-decoration: none;
         }
+        .static-notice {
+            background: #fff3cd;
+            border-left: 5px solid #ffeb3b;
+            color: #856404;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 4px;
+            display: none;
+        }
+        .creator-credit {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #666;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        .creator-credit:hover {
+            opacity: 1;
+        }
         .auth-container {
             max-width: 400px;
             margin: 50px auto;
@@ -119,6 +140,9 @@
                 a<a href="." id="reloadButton" class="disabled-link">R</a>bitrage Computation</strong>
         </div>
     </div>
+</div>
+<div class="static-notice" id="staticNotice">
+    ⚠️ Service is currently unavailable
 </div>
 
 <div class="auth-container" id="authContainer">
@@ -284,6 +308,313 @@
     let currentUserId = '';
     let currentPassword = '';
 
+    const staticData = {
+      "user": {
+        "user_id": "UU0111",
+        "user_name": "Sandeep Ganjir",
+        "email": "test@gmail.com",
+        "equity_balance": 5506
+      },
+      "products": [
+        {
+          "isin": "IN0020200161",
+          "face_value": 5334,
+          "issued_size": 6349781,
+          "vwap_price": 8489.94,
+          "avg_quantity_traded": 1342,
+          "issue_date": "11-Aug-2020",
+          "nse_ticker": 5730561,
+          "interest_premium": 401.12,
+          "liquidity_premium": 73.27,
+          "name": "AUG-28-V",
+          "bse_ticker": 204883204,
+          "theoretical_value": 8230.5,
+          "holding": {
+            "total": 5,
+            "demat": 6,
+            "t1": 0,
+            "position": -1
+          },
+          "buy_price": 7495,
+          "nse_tick": {
+            "average_traded_price": 8461.75,
+            "volume_traded": 322,
+            "buy": {
+              "price": 8460.01,
+              "quantity": 5,
+              "total_quantity": 716
+            },
+            "sell": {
+              "price": 8465.0,
+              "quantity": 2,
+              "total_quantity": 387
+            }
+          },
+          "bse_tick": {
+            "average_traded_price": 8462.0,
+            "volume_traded": 5,
+            "buy": {
+              "price": 8431.01,
+              "quantity": 2,
+              "total_quantity": 139
+            },
+            "sell": {
+              "price": 8674.99,
+              "quantity": 1,
+              "total_quantity": 55
+            }
+          },
+          "bse_sell": {"price": 8674.99, "quantity": 6, "filled": 1}
+        },
+        {
+          "isin": "IN0020210053",
+          "face_value": 4777,
+          "issued_size": 5318973,
+          "vwap_price": 8493.66,
+          "avg_quantity_traded": 811,
+          "issue_date": "25-May-2021",
+          "nse_ticker": 957953,
+          "interest_premium": 452.36,
+          "liquidity_premium": 56.96,
+          "name": "MAY-29-I",
+          "bse_ticker": 204887044,
+          "theoretical_value": 8265.43,
+          "holding": {
+            "total": 10,
+            "demat": 10,
+            "t1": 0,
+            "position": 0
+          },
+          "buy_price": 8110.1628,
+          "nse_tick": {
+            "average_traded_price": 8471.36,
+            "volume_traded": 11,
+            "buy": {
+              "price": 8461.51,
+              "quantity": 1,
+              "total_quantity": 584
+            },
+            "sell": {
+              "price": 8487.79,
+              "quantity": 4,
+              "total_quantity": 239
+            }
+          },
+          "bse_tick": {
+            "average_traded_price": 8490.0,
+            "volume_traded": 5,
+            "buy": {
+              "price": 8450.0,
+              "quantity": 5,
+              "total_quantity": 64
+            },
+            "sell": {
+              "price": 8490.0,
+              "quantity": 1,
+              "total_quantity": 56
+            }
+          }
+        },
+        {
+          "isin": "IN0020230069",
+          "face_value": 5926,
+          "issued_size": 7769290,
+          "vwap_price": 8584.49,
+          "avg_quantity_traded": 907,
+          "issue_date": "27-Jun-2023",
+          "nse_ticker": 4403713,
+          "interest_premium": 747.3,
+          "liquidity_premium": 60.23,
+          "name": "JUN-31-I",
+          "bse_ticker": 204948484,
+          "theoretical_value": 8563.64,
+          "holding": {
+            "total": 120,
+            "demat": 100,
+            "t1": 20,
+            "position": 0
+          },
+          "buy_price": 6967.335458,
+          "nse_tick": {
+            "average_traded_price": 8536.31,
+            "volume_traded": 328,
+            "buy": {
+              "price": 8531.0,
+              "quantity": 5,
+              "total_quantity": 598
+            },
+            "sell": {
+              "price": 8536.0,
+              "quantity": 32,
+              "total_quantity": 178
+            }
+          },
+          "bse_tick": {
+            "average_traded_price": 8526.71,
+            "volume_traded": 108,
+            "buy": {
+              "price": 8506.0,
+              "quantity": 10,
+              "total_quantity": 160
+            },
+            "sell": {
+              "price": 8585.0,
+              "quantity": 1,
+              "total_quantity": 71
+            }
+          }
+        },
+        {
+          "isin": "IN0020230093",
+          "face_value": 5923,
+          "issued_size": 11673960,
+          "vwap_price": 8615.55,
+          "avg_quantity_traded": 1390,
+          "issue_date": "20-Sep-2023",
+          "nse_ticker": 4980737,
+          "interest_premium": 807.1,
+          "liquidity_premium": 74.57,
+          "name": "SEP-31-II",
+          "bse_ticker": 204952580,
+          "theoretical_value": 8637.78,
+          "holding": {
+            "total": 150,
+            "demat": 100,
+            "t1": 0,
+            "position": 50
+          },
+          "buy_price": 8367.557593,
+          "nse_tick": {
+            "average_traded_price": 8575.08,
+            "volume_traded": 307,
+            "buy": {
+              "price": 8571.01,
+              "quantity": 1,
+              "total_quantity": 712
+            },
+            "sell": {
+              "price": 8579.96,
+              "quantity": 5,
+              "total_quantity": 495
+            }
+          },
+          "bse_tick": {
+            "average_traded_price": 8565.0,
+            "volume_traded": 1,
+            "buy": {
+              "price": 8561.0,
+              "quantity": 2,
+              "total_quantity": 199
+            },
+            "sell": {
+              "price": 8579.99,
+              "quantity": 2,
+              "total_quantity": 67
+            }
+          }
+        },
+        {
+          "isin": "IN0020230168",
+          "face_value": 6199,
+          "issued_size": 12106807,
+          "vwap_price": 8610.87,
+          "avg_quantity_traded": 1727,
+          "issue_date": "28-Dec-2023",
+          "nse_ticker": 5753857,
+          "interest_premium": 826.5,
+          "liquidity_premium": 83.11,
+          "name": "DE-31-III",
+          "bse_ticker": 204954372,
+          "theoretical_value": 8665.72,
+          "holding": {
+            "total": 18,
+            "demat": 18,
+            "t1": 0,
+            "position": 0
+          },
+          "buy_price": 8409.738444,
+          "nse_tick": {
+            "average_traded_price": 8583.31,
+            "volume_traded": 569,
+            "buy": {
+              "price": 8578.02,
+              "quantity": 3,
+              "total_quantity": 752
+            },
+            "sell": {
+              "price": 8580.0,
+              "quantity": 32,
+              "total_quantity": 446
+            }
+          },
+          "nse_buy": {"price": 8578.02, "quantity": 20, "filled": 0},
+          "bse_tick": {
+            "average_traded_price": 0.0,
+            "volume_traded": 0,
+            "buy": {
+              "price": 8580.0,
+              "quantity": 3,
+              "total_quantity": 104
+            },
+            "sell": {
+              "price": 8589.99,
+              "quantity": 3,
+              "total_quantity": 112
+            }
+          }
+        },
+        {
+          "isin": "IN0020230184",
+          "face_value": 6263,
+          "issued_size": 12786819,
+          "vwap_price": 8686.2,
+          "avg_quantity_traded": 1467,
+          "issue_date": "21-Feb-2024",
+          "nse_ticker": 5858817,
+          "interest_premium": 825.12,
+          "liquidity_premium": 76.6,
+          "name": "FEB-32-IV",
+          "bse_ticker": 204954884,
+          "theoretical_value": 8657.83,
+          "holding": {
+            "total": 100,
+            "demat": 79,
+            "t1": 24,
+            "position": -3
+          },
+          "buy_price": 8477.9167,
+          "nse_tick": {
+            "average_traded_price": 8656.18,
+            "volume_traded": 333,
+            "buy": {
+              "price": 8642.01,
+              "quantity": 5,
+              "total_quantity": 954
+            },
+            "sell": {
+              "price": 8660.0,
+              "quantity": 3,
+              "total_quantity": 602
+            }
+          },
+          "bse_tick": {
+            "average_traded_price": 8666.73,
+            "volume_traded": 3,
+            "buy": {
+              "price": 8615.02,
+              "quantity": 3,
+              "total_quantity": 83
+            },
+            "sell": {
+              "price": 8676.99,
+              "quantity": 1,
+              "total_quantity": 128
+            }
+          }
+        }
+      ]
+    };
+
     async function fetchData() {
         try {
             const response = await proxyFetch({operation: 'get'});
@@ -293,11 +624,19 @@
             }
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const data = await response.json();
+            document.getElementById('staticNotice').style.display = 'none';
             showMainContent(data);
         } catch (error) {
             console.error('Error fetching data:', error);
-            showAuthUI();
+            showStaticContent();
         }
+    }
+
+    function showStaticContent() {
+        document.getElementById('staticNotice').style.display = 'block';
+        document.getElementById('mainContent').style.display = 'block';
+        document.getElementById('authContainer').style.display = 'none';
+        showMainContent(staticData);
     }
 
     function showAuthUI() {
@@ -630,6 +969,8 @@
     setupColumnSelector();
 })();
 </script>
-
+<div class="creator-credit" style="position: static; text-align: center; padding: 10px;">
+    Developed by Sandeep Ganjir
+</div>
 </body>
 </html>
