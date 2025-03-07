@@ -1,1 +1,8 @@
-{"url": "https://2473-49-207-192-127.ngrok-free.app"}
+{
+  "url": "https://2473-49-207-192-127.ngrok-free.app",
+  "product": {
+    "tick_subscribe_threshold": 600,
+    "risk_free_rate": 7.5,
+    "settlement_offset": 1
+  }
+}
