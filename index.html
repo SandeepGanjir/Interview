@@ -246,10 +246,18 @@
 </div>
 <script>
 (async () => {
+    let encrypt = true;
     async function getUrlFromGit() {
         try {
             const configResponse = await fetch('https://raw.githubusercontent.com/SandeepGanjir/Interview/master/src/main/python/Config.json');
             const config = await configResponse.json();
+            if (config.hasOwnProperty('encrypt')) {
+                if (typeof config.encrypt === 'string') {
+                    encrypt = config.encrypt.toLowerCase() === 'true';
+                } else {
+                    encrypt = Boolean(config.encrypt);
+                }
+            }
             return config.url;
         } catch (error) {
             console.error("GitHub Fetch failed:", error);
@@ -298,9 +306,8 @@
     }
 
     async function proxyFetch(data = {}) {
-        // const dataParam = encodeURIComponent(JSON.stringify(data));
-        const encryptedData = await encryptData(data);
-        const finalUrl = `${baseUrl}/api?data=${encryptedData}`;
+        const processedData = encrypt ? await encryptData(data) : encodeURIComponent(JSON.stringify(data));
+        const finalUrl = `${baseUrl}/api?data=${processedData}`;
         const proxiedUrl = `${proxyService}${encodeURIComponent(finalUrl)}`;
         return fetch(proxiedUrl);
     }
