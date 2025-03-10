@@ -67,12 +67,6 @@
         .ascii-art-title {
             margin-top: 10px;
         }
-        .disabled-link {
-            pointer-events: none;
-            cursor: default;
-            color: #666 !important;
-            text-decoration: none;
-        }
         .static-notice {
             background: #fff3cd;
             border-left: 5px solid #ffeb3b;
@@ -94,33 +88,6 @@
         .creator-credit:hover {
             opacity: 1;
         }
-        .auth-container {
-            max-width: 400px;
-            margin: 50px auto;
-            display: none;
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
-        .auth-form {
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        .auth-input {
-            margin: 10px 0;
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        .error-message {
-            color: red;
-            margin-top: 10px;
-        }
-        .twofa-container {
-            display: none;
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
@@ -136,8 +103,7 @@
         ██████╔╝██║░░██║██║░╚███║██████╔╝██║░░██║██║░░██║╚█████╔╝<br>
         ╚═════╝░╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░<br>
         <div class="ascii-art-title">
-            <strong>Stock Analysis a<a href="." id="logoutButton" class="disabled-link">N</a>D Automated
-                a<a href="." id="reloadButton" class="disabled-link">R</a>bitrage Computation</strong>
+            <strong>Stock Analysis aND Automated aRbitrage Computation</strong>
         </div>
     </div>
 </div>
@@ -145,36 +111,7 @@
     ⚠️ Service is currently unavailable
 </div>
 
-<div class="auth-container" id="authContainer">
-    <div class="auth-form">
-        <div id="loginStep1">
-            <h2>Login</h2>
-            <form id="loginFormElement">
-                <input type="text" class="auth-input" id="userId"
-                       placeholder="User ID (Format: AB1234)"
-                       pattern="[A-Za-z]{2}\d{4}"
-                       title="Must follow format: 2 alphabet followed by 4 numbers" required>
-                <input type="password" class="auth-input" id="password"
-                       placeholder="Password" maxlength="16" required>
-                <button type="submit" class="auth-input">Login</button>
-            </form>
-            <div class="error-message" id="loginError"></div>
-        </div>
-        <div id="loginStep2" style="display: none;">
-            <h2>App Code Authentication</h2>
-            <form id="twofaForm">
-                <input type="text" class="auth-input" value="${currentUserId}" disabled>
-                <input type="text" class="auth-input" value="********" disabled>
-                <input type="text" class="auth-input" id="twofaCode" title="Enter 6 digit App Code"
-                       placeholder="6-digit code" inputmode="numeric" maxlength="6" required>
-                <button type="submit" class="auth-input">Verify</button>
-            </form>
-            <div class="error-message" id="twofaError"></div>
-        </div>
-    </div>
-</div>
-
-<div id="mainContent" style="display: none;">
+<div id="mainContent" style="display: block;">
     <div class="user-info-container">
         <div class="user-info">
             <p><strong>User ID:</strong> <span id="user_id"></span></p>
@@ -246,18 +183,10 @@
 </div>
 <script>
 (async () => {
-    let encrypt = true;
     async function getUrlFromGit() {
         try {
             const configResponse = await fetch('https://raw.githubusercontent.com/SandeepGanjir/Interview/master/src/main/python/Config.json');
             const config = await configResponse.json();
-            if (config.hasOwnProperty('encrypt')) {
-                if (typeof config.encrypt === 'string') {
-                    encrypt = config.encrypt.toLowerCase() === 'true';
-                } else {
-                    encrypt = Boolean(config.encrypt);
-                }
-            }
             return config.url;
         } catch (error) {
             console.error("GitHub Fetch failed:", error);
@@ -265,51 +194,9 @@
     }
     const baseUrl = await getUrlFromGit();
     const proxyService = 'https://api.codetabs.com/v1/proxy?quest=';
-    const ENCRYPTION_SECRET = "KwezqUwQjvDFZ/TyEo80wshFIl6m13NabQDypMf/NomE1SQ4hY/20Lt9Y0BthReO";
-
-    async function encryptData(data) {
-        const text = JSON.stringify(data);
-        const dataBuffer = new TextEncoder().encode(text);
-
-        const iv = crypto.getRandomValues(new Uint8Array(12));
-        const salt = crypto.getRandomValues(new Uint8Array(16));
-
-        // Derive key from secret
-        const keyMaterial = await crypto.subtle.importKey(
-            "raw",
-            new TextEncoder().encode(ENCRYPTION_SECRET),
-            { name: "PBKDF2" },
-            false,
-            ["deriveKey"]
-        );
-
-        const key = await crypto.subtle.deriveKey(
-            { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
-            keyMaterial,
-            { name: "AES-GCM", length: 256 },
-            false,
-            ["encrypt"]
-        );
-
-        // Encrypt data
-        const encrypted = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, dataBuffer);
-        const ciphertext = new Uint8Array(encrypted.slice(0, -16));
-        const tag = new Uint8Array(encrypted.slice(-16));
-
-        const combined = new Uint8Array(iv.length + salt.length + ciphertext.length + tag.length);
-        combined.set(iv, 0);
-        combined.set(salt, iv.length);
-        combined.set(ciphertext, iv.length + salt.length);
-        combined.set(tag, iv.length + salt.length + ciphertext.length);
-
-        return btoa(String.fromCharCode(...combined)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-    }
 
     async function proxyFetch(data = {}) {
-        const processedData = encrypt ? await encryptData(data) : encodeURIComponent(JSON.stringify(data));
-        const finalUrl = `${baseUrl}/api?data=${processedData}`;
-        const proxiedUrl = `${proxyService}${encodeURIComponent(finalUrl)}`;
-        return fetch(proxiedUrl);
+        return fetch(`${proxyService}${baseUrl}/instruments`);
     }
 
     let currentUserId = '';
@@ -629,11 +516,7 @@
             const response = await proxyFetch({operation: 'get'});
             if (response.status === 200) {
                 const data = await response.json();
-                if (data.status === 200) {
-                    showMainContent(data);
-                } else {
-                    showAuthUI();
-                }
+                showMainContent(data);
                 return;
             }
         } catch (error) {
@@ -644,148 +527,10 @@
 
     function showStaticContent() {
         document.getElementById('staticNotice').style.display = 'block';
-        document.getElementById('mainContent').style.display = 'block';
-        document.getElementById('authContainer').style.display = 'none';
         showMainContent(staticData);
     }
 
-    function showAuthUI() {
-        document.getElementById('mainContent').style.display = 'none';
-        document.getElementById('authContainer').style.display = 'block';
-        document.getElementById('logoutButton').classList.add('disabled-link');
-        document.getElementById('reloadButton').classList.add('disabled-link');
-        restrictUserInputFormat()
-        document.getElementById('loginFormElement').addEventListener('submit', handleLogin);
-    }
-
-    async function handleLogin(event) {
-        event.preventDefault();
-        const form = event.target;
-        if (!form.checkValidity()) {
-            form.reportValidity();
-            return;
-        }
-        currentUserId = document.getElementById('userId').value.toUpperCase();
-        currentPassword = document.getElementById('password').value;
-        try {
-            const response = await proxyFetch({
-                operation: 'login',
-                user_id: currentUserId,
-                password: currentPassword
-            });
-            if (response.status === 200) {
-                const data = await response.json();
-                if (data.status === 200) {
-                    show2FAForm();
-                } else {
-                    document.getElementById('loginError').textContent = 'Login failed. Please check your credentials.';
-                }
-                return;
-            }
-        } catch (error) {
-            console.error('Login error:', error);
-        }
-        showStaticContent();
-    }
-
-    function show2FAForm() {
-        const step2 = document.getElementById('loginStep2');
-        step2.innerHTML = `
-            <h2>App Code Authentication</h2>
-            <form id="twofaForm">
-                <input type="text" class="auth-input" value="${currentUserId}" disabled>
-                <input type="text" class="auth-input" value="********" disabled>
-                <input type="text" class="auth-input" id="twofaCode" title="Enter 6 digit App Code"
-                       placeholder="6-digit code" inputmode="numeric" maxlength="6" required>
-                <button type="submit" class="auth-input">Verify</button>
-            </form>
-            <div class="error-message" id="twofaError"></div>
-        `;
-
-        // Reattach event listener
-        document.getElementById('twofaForm').addEventListener('submit', handle2FA);
-        document.getElementById('loginStep1').style.display = 'none';
-        step2.style.display = 'block';
-        restrictUserInputFormat()
-        document.getElementById('twofaCode').focus();
-    }
-
-    async function handle2FA(event) {
-        event.preventDefault();
-        const form = event.target;
-        if (!form.checkValidity()) {
-            form.reportValidity();
-            return;
-        }
-        const code = document.getElementById('twofaCode').value;
-        try {
-            const response = await proxyFetch({
-                operation: 'login',
-                user_id: currentUserId,
-                password: currentPassword,
-                code: code
-            });
-            if (response.status === 200) {
-                const data = await response.json();
-                if (data.status === 200) {
-                    fetchData();
-                } else {
-                    document.getElementById('twofaError').textContent = 'Login failed. Invalid verification code.';
-                }
-                return;
-            }
-        } catch (error) {
-            console.error('2FA error:', error);
-        }
-        showStaticContent();
-    }
-
-    async function handleLogout(event) {
-        event.preventDefault();
-        try {
-            const response = await proxyFetch({operation: 'logout'});
-            if (response.status === 200) {
-                const data = await response.json();
-                if (data.status === 200) {
-                    alert('Logged out successfully.');
-                    window.location.reload();
-                } else {
-                    alert('Logout failed. Try again.');
-                }
-                return;
-            }
-        } catch (error) {
-            console.error('Logout error:', error);
-        }
-        showStaticContent();
-    }
-
-    async function handleReload(event) {
-        event.preventDefault();
-        try {
-            const response = await proxyFetch({operation: 'reload'});
-            if (response.status === 200) {
-                const data = await response.json();
-                if (data.status === 200) {
-                    alert('DB Reloaded successfully.');
-                    window.location.reload();
-                } else {
-                    alert('DB Reload failed. Please try again.');
-                }
-                return;
-            }
-        } catch (error) {
-            console.error('DB Reload error:', error);
-        }
-        setTimeout(() => {window.location.reload();}, 50000);
-    }
-
     function showMainContent(data) {
-        document.getElementById('authContainer').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-        document.getElementById('logoutButton').classList.remove('disabled-link');
-        document.getElementById('reloadButton').classList.remove('disabled-link');
-
         // Populate user information
         document.getElementById('user_id').textContent = data.user?.user_id;
         document.getElementById('user_name').textContent = data.user?.user_name;
@@ -962,8 +707,6 @@
         });
     }
 
-    document.getElementById('logoutButton').addEventListener('click', handleLogout);
-    document.getElementById('reloadButton').addEventListener('click', handleReload);
     fetchData();
     setupColumnSelector();
 })();
