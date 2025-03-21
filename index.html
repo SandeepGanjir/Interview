@@ -82,7 +82,7 @@
             right: 10px;
             font-size: 12px;
             color: #666;
-            opacity: 0.7;
+            opacity: 0.4;
             transition: opacity 0.3s ease;
         }
         .creator-credit:hover {
@@ -133,16 +133,12 @@
             <label><input type="checkbox" class="column-checkbox" data-column="a1" checked> NSE Avg Price</label>
             <label><input type="checkbox" class="column-checkbox" data-column="a2" checked> NSE Volume</label>
             <label><input type="checkbox" class="column-checkbox" data-column="a3" checked> NSE Buy</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="a4"> NSE Buy Order</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="a5" checked> NSE Sell</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="a6"> NSE Sell Order</label>
+            <label><input type="checkbox" class="column-checkbox" data-column="a4" checked> NSE Sell</label>
             <br>
             <label><input type="checkbox" class="column-checkbox" data-column="b1" checked> BSE Avg Price</label>
             <label><input type="checkbox" class="column-checkbox" data-column="b2" checked> BSE Volume</label>
             <label><input type="checkbox" class="column-checkbox" data-column="b3" checked> BSE Buy</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="b4"> BSE Buy Order</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="b5" checked> BSE Sell</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="b6"> BSE Sell Order</label>
+            <label><input type="checkbox" class="column-checkbox" data-column="b4" checked> BSE Sell</label>
         </div>
     </div>
 
@@ -159,22 +155,18 @@
             <th rowspan="2" class="column-8">Liquidity<br>Premium</th>
             <th rowspan="2" class="column-9">TV</th>
             <th rowspan="2" class="column-10">Holding</th>
-            <th colspan="6" class="nse">NSE</th>
-            <th colspan="6" class="bse">BSE</th>
+            <th colspan="4" class="nse">NSE</th>
+            <th colspan="4" class="bse">BSE</th>
         </tr>
         <tr>
             <th class="column-a1">Avg Price</th>
             <th class="column-a2">Volume</th>
             <th class="column-a3 buy">BUY</th>
-            <th class="column-a4 buy">BUY Order</th>
-            <th class="column-a5 sell">SELL</th>
-            <th class="column-a6 sell">SELL Order</th>
+            <th class="column-a4 sell">SELL</th>
             <th class="column-b1">Avg Price</th>
             <th class="column-b2">Volume</th>
             <th class="column-b3 buy">BUY</th>
-            <th class="column-b4 buy">BUY Order</th>
-            <th class="column-b5 sell">SELL</th>
-            <th class="column-b6 sell">SELL Order</th>
+            <th class="column-b4 sell">SELL</th>
         </tr>
         </thead>
         <tbody id="products_table">
@@ -562,15 +554,11 @@
                 <td class="column-a1" style="background-color: ${nseColor}">${product.nse_tick?.average_traded_price}</td>
                 <td class="column-a2">${product.nse_tick?.volume_traded}</td>
                 <td class="column-a3 buy" style="background-color: ${nseBuyColor}">${getHighlightedValue(product.nse_tick?.buy?.price, product.nse_buy)} ${product.nse_tick?.buy?.quantity}:${product.nse_tick?.buy?.total_quantity}</td>
-                <td class="column-a4 buy">${product.nse_buy ? `${product.nse_buy?.price} ${product.nse_buy?.filled}/${product.nse_buy?.quantity}` : ''}</td>
-                <td class="column-a5 sell" style="background-color: ${nseSellColor}">${getHighlightedValue(product.nse_tick?.sell?.price, product.nse_sell)} ${product.nse_tick?.sell?.quantity}:${product.nse_tick?.sell?.total_quantity}</td>
-                <td class="column-a6 sell">${product.nse_sell ? `${product.nse_sell?.price} ${product.nse_sell?.filled}/${product.nse_sell?.quantity}` : ''}</td>
+                <td class="column-a4 sell" style="background-color: ${nseSellColor}">${getHighlightedValue(product.nse_tick?.sell?.price, product.nse_sell)} ${product.nse_tick?.sell?.quantity}:${product.nse_tick?.sell?.total_quantity}</td>
                 <td class="column-b1" style="background-color: ${bseColor}">${product.bse_tick?.average_traded_price}</td>
                 <td class="column-b2">${product.bse_tick?.volume_traded}</td>
                 <td class="column-b3 buy" style="background-color: ${bseBuyColor}">${getHighlightedValue(product.bse_tick?.buy?.price, product.bse_buy)} ${product.bse_tick?.buy?.quantity}:${product.bse_tick?.buy?.total_quantity}</td>
-                <td class="column-b4 buy">${product.bse_buy ? `${product.bse_buy?.price} ${product.bse_buy?.filled}/${product.bse_buy?.quantity}` : ''}</td>
-                <td class="column-b5 sell" style="background-color: ${bseSellColor}">${getHighlightedValue(product.bse_tick?.sell?.price, product.bse_sell)} ${product.bse_tick?.sell?.quantity}:${product.bse_tick?.sell?.total_quantity}</td>
-                <td class="column-b6 sell">${product.bse_sell ? `${product.bse_sell?.price} ${product.bse_sell?.filled}/${product.bse_sell?.quantity}` : ''}</td>
+                <td class="column-b4 sell" style="background-color: ${bseSellColor}">${getHighlightedValue(product.bse_tick?.sell?.price, product.bse_sell)} ${product.bse_tick?.sell?.quantity}:${product.bse_tick?.sell?.total_quantity}</td>
             `;
 
             productsTable.appendChild(row);
@@ -624,8 +612,8 @@
     function updateColspan() {
         const nseHeader = document.querySelector('.nse');
         const bseHeader = document.querySelector('.bse');
-        const nseCheckboxes = ["a1", "a2", "a3", "a4", "a5", "a6"];
-        const bseCheckboxes = ["b1", "b2", "b3", "b4", "b5", "b6"];
+        const nseCheckboxes = ["a1", "a2", "a3", "a4"];
+        const bseCheckboxes = ["b1", "b2", "b3", "b4"];
 
         let nseColspan = 0;
         let bseColspan = 0;
