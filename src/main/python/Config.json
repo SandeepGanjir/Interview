@@ -3,7 +3,8 @@
     "product": {
         "tick_subscribe_threshold": 600,
         "risk_free_rate": 8.0,
-        "settlement_date_offset": 2
+        "settlement_date_offset": 2,
+        "bond_tenure": 8
     },
     "order": {
         "nse_circuit_limit": 0.1,
