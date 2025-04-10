@@ -10,12 +10,6 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
-        .user-info-container {
-            display: flex;
-            align-items: flex-start;
-            gap: 100px;
-            margin-bottom: 20px;
-        }
         .user-info p {
             margin: 0;
             padding: 0;
@@ -88,6 +82,49 @@
         .creator-credit:hover {
             opacity: 1;
         }
+        .settings-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 8px;
+            cursor: pointer;
+        }
+        .settings-pane {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 300px;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 999;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .settings-pane.visible {
+            transform: translateX(0);
+        }
+        .row-selector, .column-selector, .user-info {
+            margin: 15px 0;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+        .settings-pane h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 16px;
+        }
+        .row-selector label {
+            display: block;
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -104,6 +141,7 @@
         ╚═════╝░╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░<br>
         <div class="ascii-art-title">
             <strong>Stock Analysis aND Automated aRbitrage Computation</strong>
+            <button class="settings-toggle" id="settingsToggle">☰</button>
         </div>
     </div>
 </div>
@@ -112,31 +150,40 @@
 </div>
 
 <div id="mainContent" style="display: block;">
-    <div class="user-info-container">
+    <div class="settings-pane" id="settingsPane">
+        <h3>User Info</h3>
         <div class="user-info">
             <p><strong>User ID:</strong> <span id="user_id"></span></p>
             <p><strong>User Name:</strong> <span id="user_name"></span></p>
             <p><strong>Equity Balance:</strong> <span id="equity_balance"></span></p>
         </div>
+        <br>
+        <h3>Row Selection</h3>
+        <div class="row-selector">
+            <label>
+                <input type="checkbox" id="showAllRows" checked> Show All
+            </label>
+            <div id="rowCheckboxes"></div>
+        </div>
+        <br>
+        <h3>Column Selection</h3>
         <div class="column-selector">
             <label><input type="checkbox" class="column-checkbox" data-column="1" checked> Name</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="2" checked> Issue Date</label>
+            <label><input type="checkbox" class="column-checkbox" data-column="2" checked> Issue Date</label><br>
             <label><input type="checkbox" class="column-checkbox" data-column="3" checked> Face Value</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="4" checked> Issued Size</label>
+            <label><input type="checkbox" class="column-checkbox" data-column="4" checked> Issued Size</label><br>
             <label><input type="checkbox" class="column-checkbox" data-column="5" checked> Average Volume</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="6" checked> VWAP Price</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="7" checked> Interest Premium</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="8" checked> Liquidity Premium</label>
+            <label><input type="checkbox" class="column-checkbox" data-column="6" checked> VWAP Price</label><br>
+            <label><input type="checkbox" class="column-checkbox" data-column="7" checked> Interest Premium</label><br>
+            <label><input type="checkbox" class="column-checkbox" data-column="8" checked> Liquidity Premium</label><br>
             <label><input type="checkbox" class="column-checkbox" data-column="9" checked> TV</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="10" checked> Holding</label>
-            <br>
+            <label><input type="checkbox" class="column-checkbox" data-column="10" checked> Holding</label><br><br>
             <label><input type="checkbox" class="column-checkbox" data-column="a1" checked> NSE Avg Price</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="a2" checked> NSE Volume</label>
+            <label><input type="checkbox" class="column-checkbox" data-column="a2" checked> NSE Volume</label><br>
             <label><input type="checkbox" class="column-checkbox" data-column="a3" checked> NSE Buy</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="a4" checked> NSE Sell</label>
-            <br>
+            <label><input type="checkbox" class="column-checkbox" data-column="a4" checked> NSE Sell</label><br>
             <label><input type="checkbox" class="column-checkbox" data-column="b1" checked> BSE Avg Price</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="b2" checked> BSE Volume</label>
+            <label><input type="checkbox" class="column-checkbox" data-column="b2" checked> BSE Volume</label><br>
             <label><input type="checkbox" class="column-checkbox" data-column="b3" checked> BSE Buy</label>
             <label><input type="checkbox" class="column-checkbox" data-column="b4" checked> BSE Sell</label>
         </div>
@@ -524,6 +571,7 @@
 
     function showMainContent(data) {
         // Populate user information
+        setupRowSelector(data.products);
         document.getElementById('user_id').textContent = data.user?.user_id;
         document.getElementById('user_name').textContent = data.user?.user_name;
         document.getElementById('equity_balance').textContent = data.user?.equity_balance?.toFixed(2);
@@ -693,6 +741,62 @@
         document.getElementById('twofaCode').addEventListener('input', function (e) {
             e.target.value = e.target.value.replace(/\D/g, '').substring(0, 6);
         });
+    }
+
+    const settingsToggle = document.getElementById('settingsToggle');
+    const settingsPane = document.getElementById('settingsPane');
+
+    settingsToggle.addEventListener('click', () => {
+        settingsPane.classList.toggle('visible');
+        settingsToggle.textContent = settingsPane.classList.contains('visible') ? '×' : '☰';
+    });
+
+    // Row selector functionality
+    function setupRowSelector(products) {
+        const rowCheckboxes = document.getElementById('rowCheckboxes');
+        const showAll = document.getElementById('showAllRows');
+        let checkboxes = [];
+
+        // Generate row checkboxes
+        products.forEach((product, index) => {
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <label>
+                    <input type="checkbox" class="row-checkbox" data-index="${index}" checked>
+                    ${product.name}
+                </label>
+            `;
+            rowCheckboxes.appendChild(div);
+            checkboxes.push(div.querySelector('input'));
+        });
+
+        // Show all toggle
+        showAll.addEventListener('change', (e) => {
+            checkboxes.forEach(cb => {
+                cb.checked = e.target.checked;
+                toggleRowVisibility(cb.dataset.index, cb.checked);
+            });
+        });
+
+        // Individual row toggles
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', (e) => {
+                toggleRowVisibility(e.target.dataset.index, e.target.checked);
+                updateShowAllState();
+            });
+        });
+
+        function toggleRowVisibility(index, visible) {
+            const rows = document.querySelectorAll('#products_table tr');
+            if (rows[index]) {
+                rows[index].style.display = visible ? '' : 'none';
+            }
+        }
+
+        function updateShowAllState() {
+            const allChecked = checkboxes.every(cb => cb.checked);
+            showAll.checked = allChecked;
+        }
     }
 
     fetchData();
