@@ -1,7 +1,7 @@
 {
     "url": "https://ef40-49-207-209-239.ngrok-free.app",
     "product": {
-        "tick_subscribe_threshold": 100,
+        "tick_subscribe_threshold": 700,
         "risk_free_rate": 8.0,
         "settlement_date_offset": 2,
         "bond_tenure": 8
