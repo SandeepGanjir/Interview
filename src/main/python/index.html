@@ -12,33 +12,46 @@
         }
         table {
             width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 6px;
-            text-align: left;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            margin: 10px 0;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+            border-radius: 8px;
+            overflow: hidden;
         }
         th {
-            background-color: #f4f4f4;
-            font-size: 14px;
+            background-color: #4dabf7;
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+            padding: 6px 8px !important;
+            letter-spacing: 0.3px;
+        }
+        .nse {
+            background-color: #97bd88 !important;
+        }
+        .bse {
+            background-color: #e6a43c !important;
         }
         td {
+            padding: 6px 8px !important;
             font-size: 12px;
+            color: #444;
+            border-bottom: 1px solid #f0f4f8;
         }
-        .buy {
-            margin: 0;
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
         }
-        .sell {
-            margin: 0;
+        tr:hover {
+            background-color: #f1f8ff !important;
         }
-        .nse, .bse {
-            border: 2px solid #ddd;
+        td[style*="background-color"] {
+            position: relative;
+            font-weight: 500;
         }
-        .column-selector {
-            margin-top: 0;
+        th {
+            vertical-align: middle !important;
         }
         .ascii-art-container {
             display: flex;
@@ -88,12 +101,13 @@
             color: #666;
         }
         .settings-pane {
+            background: #f8f9fa !important;
+            border-left: 1px solid #dee2e6;
             position: fixed;
             top: 0;
             right: 0;
             height: 100vh;
-            width: 300px;
-            background: white;
+            width: 200px;
             box-shadow: -2px 0 10px rgba(0,0,0,0.1);
             transform: translateX(100%);
             transition: transform 0.3s ease;
@@ -104,16 +118,28 @@
         .settings-pane.visible {
             transform: translateX(0);
         }
-        .row-selector, .column-selector, .user-info {
+        .row-selector, .column-selector {
             margin: 15px 0;
             padding: 10px;
-            border: 1px solid #eee;
+            border: 2px solid #eee;
             border-radius: 4px;
         }
+        .column-selector label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 2px 0;
+            cursor: pointer;
+        }
+        .column-selector input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #4dabf7;
+        }
         .settings-pane h3 {
-            margin-top: 0;
-            color: #333;
-            font-size: 16px;
+            color: #4dabf7 !important;
+            font-size: 14px !important;
+            margin-bottom: 12px !important;
         }
         .row-selector label {
             display: block;
@@ -207,22 +233,22 @@
         <br>
         <h3>Column Selection</h3>
         <div class="column-selector">
-            <label><input type="checkbox" class="column-checkbox" data-column="1" checked> Name</label><br>
-            <label><input type="checkbox" class="column-checkbox" data-column="2" checked> Issue Date</label><br>
-            <label><input type="checkbox" class="column-checkbox" data-column="3" checked> Face Value</label><br>
-            <label><input type="checkbox" class="column-checkbox" data-column="4" checked> Issued Size</label><br>
-            <label><input type="checkbox" class="column-checkbox" data-column="5" checked> Average Volume</label><br>
-            <label><input type="checkbox" class="column-checkbox" data-column="6" checked> VWAP Price</label><br>
-            <label><input type="checkbox" class="column-checkbox" data-column="7" checked> Interest Premium</label><br>
-            <label><input type="checkbox" class="column-checkbox" data-column="8" checked> Liquidity Premium</label><br>
-            <label><input type="checkbox" class="column-checkbox" data-column="9" checked> TV</label><br>
-            <label><input type="checkbox" class="column-checkbox" data-column="10" checked> Holding</label><br><br>
+            <label><input type="checkbox" class="column-checkbox" data-column="1" checked> Name</label>
+            <label><input type="checkbox" class="column-checkbox" data-column="2" checked> Issue Date</label>
+            <label><input type="checkbox" class="column-checkbox" data-column="3" checked> Face Value</label>
+            <label><input type="checkbox" class="column-checkbox" data-column="4" checked> Issued Size</label>
+            <label><input type="checkbox" class="column-checkbox" data-column="5" checked> Average Volume</label>
+            <label><input type="checkbox" class="column-checkbox" data-column="6" checked> VWAP Price</label>
+            <label><input type="checkbox" class="column-checkbox" data-column="7" checked> Interest Premium</label>
+            <label><input type="checkbox" class="column-checkbox" data-column="8" checked> Liquidity Premium</label>
+            <label><input type="checkbox" class="column-checkbox" data-column="9" checked> TV</label>
+            <label><input type="checkbox" class="column-checkbox" data-column="10" checked> Holding</label><br>
             <label><input type="checkbox" class="column-checkbox" data-column="a1" checked> NSE Avg Price</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="a2" checked> NSE Volume</label><br>
+            <label><input type="checkbox" class="column-checkbox" data-column="a2" checked> NSE Volume</label>
             <label><input type="checkbox" class="column-checkbox" data-column="a3" checked> NSE Buy</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="a4" checked> NSE Sell</label><br>
+            <label><input type="checkbox" class="column-checkbox" data-column="a4" checked> NSE Sell</label>
             <label><input type="checkbox" class="column-checkbox" data-column="b1" checked> BSE Avg Price</label>
-            <label><input type="checkbox" class="column-checkbox" data-column="b2" checked> BSE Volume</label><br>
+            <label><input type="checkbox" class="column-checkbox" data-column="b2" checked> BSE Volume</label>
             <label><input type="checkbox" class="column-checkbox" data-column="b3" checked> BSE Buy</label>
             <label><input type="checkbox" class="column-checkbox" data-column="b4" checked> BSE Sell</label>
         </div>
@@ -724,7 +750,7 @@
         if (percentDiff > 0.8) {
             return `rgb(255, ${255 - intensity}, ${255 - intensity})`;  // Light red
         } else {
-            return `rgb(224, 250, 250)`;  // Default Buy
+            return `rgb(244, 250, 250)`;  // Default Buy
         }
     }
 
@@ -734,7 +760,7 @@
         if (percentDiff > 0.8 && sellPrice > 1) {
             return `rgb(${255 - intensity}, 255, ${255 - intensity})`;  // Light green
         } else {
-            return `rgb(255, 221, 170)`;  // Default Sell
+            return `rgb(255, 241, 200)`;  // Default Sell
         }
     }
 
