@@ -587,19 +587,19 @@
             row.innerHTML = `
                 <td class="column-1">${product.name}</td>
                 <td class="column-2">${product.issue_date}</td>
-                <td class="column-3">${product.face_value}</td>
+                <td class="column-3">${product.face_value?.toFixed(2) ?? ''}</td>
                 <td class="column-4">${product.issued_size}</td>
                 <td class="column-5">${product.avg_quantity_traded}</td>
-                <td class="column-6">${product.vwap_price}</td>
-                <td class="column-7">${product.interest_premium}</td>
-                <td class="column-8">${product.liquidity_premium}</td>
-                <td class="column-9">${product.theoretical_value}</td>
+                <td class="column-6">${product.vwap_price?.toFixed(2) ?? ''}</td>
+                <td class="column-7">${product.interest_premium?.toFixed(2) ?? ''}</td>
+                <td class="column-8">${product.liquidity_premium?.toFixed(2) ?? ''}</td>
+                <td class="column-9">${product.theoretical_value?.toFixed(2) ?? ''}</td>
                 <td class="column-10">${getHoldingVal(product.holding)}</td>
-                <td class="column-a1" style="background-color: ${nseColor}">${product.nse_tick?.average_traded_price}</td>
+                <td class="column-a1" style="background-color: ${nseColor}">${product.nse_tick?.average_traded_price?.toFixed(2) ?? ''}</td>
                 <td class="column-a2">${product.nse_tick?.volume_traded}</td>
                 <td class="column-a3 buy" style="background-color: ${nseBuyColor}">${getHighlightedValue(product.nse_tick?.buy?.price, product.nse_buy)} ${product.nse_tick?.buy?.quantity}:${product.nse_tick?.buy?.total_quantity}</td>
                 <td class="column-a4 sell" style="background-color: ${nseSellColor}">${getHighlightedValue(product.nse_tick?.sell?.price, product.nse_sell)} ${product.nse_tick?.sell?.quantity}:${product.nse_tick?.sell?.total_quantity}</td>
-                <td class="column-b1" style="background-color: ${bseColor}">${product.bse_tick?.average_traded_price}</td>
+                <td class="column-b1" style="background-color: ${bseColor}">${product.bse_tick?.average_traded_price?.toFixed(2) ?? ''}</td>
                 <td class="column-b2">${product.bse_tick?.volume_traded}</td>
                 <td class="column-b3 buy" style="background-color: ${bseBuyColor}">${getHighlightedValue(product.bse_tick?.buy?.price, product.bse_buy)} ${product.bse_tick?.buy?.quantity}:${product.bse_tick?.buy?.total_quantity}</td>
                 <td class="column-b4 sell" style="background-color: ${bseSellColor}">${getHighlightedValue(product.bse_tick?.sell?.price, product.bse_sell)} ${product.bse_tick?.sell?.quantity}:${product.bse_tick?.sell?.total_quantity}</td>
@@ -691,7 +691,7 @@
         return totalPart;
     }
 
-    const getHighlightedValue = (price, order) => order?.price === price ? `<b>${price}</b>` : price;
+    const getHighlightedValue = (price, order) => order?.price === price ? `<b>${price?.toFixed(2) ?? ''}</b>` : price?.toFixed(2) ?? '';
 
     function getDynamicColor(avgPrice, theoreticalValue) {
         const percentDiff = (avgPrice - theoreticalValue) / theoreticalValue * 100;
