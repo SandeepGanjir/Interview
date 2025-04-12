@@ -10,49 +10,6 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
-        table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            background: white;
-            margin: 10px 0;
-            box-shadow: 0 3px 5px rgba(0,0,0,0.3);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        th {
-            background-color: #4dabf7;
-            color: white;
-            font-weight: 600;
-            font-size: 12px;
-            padding: 6px 8px !important;
-            letter-spacing: 0.3px;
-        }
-        .nse {
-            background-color: #97bd88 !important;
-        }
-        .bse {
-            background-color: #e6a43c !important;
-        }
-        td {
-            padding: 6px 8px !important;
-            font-size: 12px;
-            color: #444;
-            border-bottom: 1px solid #f0f4f8;
-        }
-        tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-        tr:hover {
-            background-color: #f1f8ff !important;
-        }
-        td[style*="background-color"] {
-            position: relative;
-            font-weight: 500;
-        }
-        th {
-            vertical-align: middle !important;
-        }
         .ascii-art-container {
             display: flex;
             flex-wrap: wrap;
@@ -80,6 +37,15 @@
         .ascii-art-title {
             margin-top: 0.6rem;
             font-size: clamp(1.2rem, 2vw, 1rem);
+        }
+        @media (max-width: 1200px) {
+            .ascii-art {
+                font-size: 0.6rem;
+                white-space: pre;
+            }
+            .ascii-art-title {
+                font-size: 6rem;
+            }
         }
         .static-notice {
             background: #fff3cd;
@@ -167,6 +133,49 @@
         .info-item {
             flex: 1;
             text-align: left;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            margin: 10px 0;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th {
+            background-color: #4dabf7;
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+            padding: 6px 8px !important;
+            letter-spacing: 0.3px;
+        }
+        .nse {
+            background-color: #97bd88 !important;
+        }
+        .bse {
+            background-color: #e6a43c !important;
+        }
+        td {
+            padding: 6px 8px !important;
+            font-size: 12px;
+            color: #444;
+            border-bottom: 1px solid #f0f4f8;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #f1f8ff !important;
+        }
+        td[style*="background-color"] {
+            position: relative;
+            font-weight: 500;
+        }
+        th {
+            vertical-align: middle !important;
         }
         .creator-credit {
             position: fixed;
@@ -730,7 +739,7 @@
         return totalPart;
     }
 
-    const getHighlightedValue = (price, order) => order?.price === price ? `<b>${price?.toFixed(2) ?? ''}</b>` : price?.toFixed(2) ?? '';
+    const getHighlightedValue = (price, order) => order?.price === price ? `<b><i>${price?.toFixed(2) ?? ''}</i></b>` : price?.toFixed(2) ?? '';
 
     function getDynamicColor(avgPrice, theoreticalValue) {
         const percentDiff = (avgPrice - theoreticalValue) / theoreticalValue * 100;
