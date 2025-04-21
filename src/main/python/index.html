@@ -730,7 +730,7 @@
         return totalPart;
     }
 
-    const getHighlightedValue = (price, order) => order?.price === price ? `<b><i>${price?.toFixed(2) ?? ''}</i></b>` : price?.toFixed(2) ?? '';
+    const getHighlightedValue = (price, order) => order?.price === price ? `<strong><i>${price?.toFixed(2) ?? ''}</i></strong>` : price?.toFixed(2) ?? '';
 
     function getDynamicColor(avgPrice, theoreticalValue) {
         const percentDiff = (avgPrice - theoreticalValue) / theoreticalValue * 100;
