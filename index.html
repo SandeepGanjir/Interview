@@ -662,7 +662,7 @@
                 <td class="column-6">${product.vwap_price?.toFixed(2) ?? ''}</td>
                 <td class="column-7">${product.interest_premium?.toFixed(2) ?? ''}</td>
                 <td class="column-8">${product.liquidity_premium?.toFixed(2) ?? ''}</td>
-                <td class="column-9">${product.theoretical_value?.toFixed(2) ?? ''}</td>
+                <td class="column-9" style="background-color: rgb(250, 230, 250)">${product.theoretical_value?.toFixed(2) ?? ''}</td>
                 <td class="column-10">${getHoldingVal(product.holding)}</td>
                 <td class="column-a1" style="background-color: ${nseColor}">${product.nse_tick?.average_traded_price?.toFixed(2) ?? ''}</td>
                 <td class="column-a2">${product.nse_tick?.volume_traded?.toString().padStart(5, ' ') ?? ''}</td>
