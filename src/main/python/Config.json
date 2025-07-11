@@ -9,6 +9,6 @@
     },
     "order": {
         "nse_circuit_limit": 0.1,
-        "bse_circuit_limit": 0.1
+        "bse_circuit_limit": 0.05
     }
 }
