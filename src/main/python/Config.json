@@ -1,7 +1,7 @@
 {
     "url": "https://ffa611255c9e.ngrok-free.app",
     "product": {
-        "tick_subscribe_threshold": 800,
+        "tick_subscribe_threshold": 700,
         "risk_free_rate": 8.0,
         "settlement_date_offset": 2,
         "bond_tenure": 8
