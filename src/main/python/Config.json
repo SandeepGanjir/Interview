@@ -1,7 +1,7 @@
 {
-    "url": "https://354cf02c21e9.ngrok-free.app",
+    "url": "https://0177fa0d3f63.ngrok-free.app",
     "product": {
-        "tick_subscribe_threshold": 700,
+        "tick_subscribe_threshold": 745,
         "risk_free_rate": 8.0,
         "settlement_date_offset": 2,
         "bond_tenure": 8
