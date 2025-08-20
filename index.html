@@ -734,6 +734,7 @@
     }
 
     function getHoldingVal(prod) {
+        if (prod.net_quantity === 0 && prod.position_quantity === 0) return ``;
         const totalPart = `<span style="color:black">${prod.net_quantity?.toString().padStart(5, ' ') ?? ''}</span>`;
         if (prod.t1_quantity !== 0 || prod.position_quantity !== 0) {
             const format = (val, color) => val ? `<span style="color:${color}">${val}</span>` : '';
