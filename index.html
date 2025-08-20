@@ -328,12 +328,10 @@
           "name": "AUG-28-V",
           "bse_ticker": 204883204,
           "theoretical_value": 8230.5,
-          "holding": {
-            "total": 5,
-            "demat": 6,
-            "t1": 0,
-            "position": -1
-          },
+          "net_quantity": 5,
+          "demat_quantity": 6,
+          "t1_quantity": 0,
+          "position_quantity": -1,
           "buy_price": 7495,
           "nse_tick": {
             "average_traded_price": 8461.75,
@@ -378,12 +376,10 @@
           "name": "MAY-29-I",
           "bse_ticker": 204887044,
           "theoretical_value": 8265.43,
-          "holding": {
-            "total": 10,
-            "demat": 10,
-            "t1": 0,
-            "position": 0
-          },
+          "net_quantity": 10,
+          "demat_quantity": 10,
+          "t1_quantity": 0,
+          "position_quantity": 0,
           "buy_price": 8110.1628,
           "nse_tick": {
             "average_traded_price": 8471.36,
@@ -427,12 +423,10 @@
           "name": "JUN-31-I",
           "bse_ticker": 204948484,
           "theoretical_value": 8563.64,
-          "holding": {
-            "total": 120,
-            "demat": 100,
-            "t1": 20,
-            "position": 0
-          },
+          "net_quantity": 120,
+          "demat_quantity": 100,
+          "t1_quantity": 20,
+          "position_quantity": 0,
           "buy_price": 6967.335458,
           "nse_tick": {
             "average_traded_price": 8536.31,
@@ -476,12 +470,10 @@
           "name": "SEP-31-II",
           "bse_ticker": 204952580,
           "theoretical_value": 8637.78,
-          "holding": {
-            "total": 150,
-            "demat": 100,
-            "t1": 0,
-            "position": 50
-          },
+          "net_quantity": 150,
+          "demat_quantity": 100,
+          "t1_quantity": 0,
+          "position_quantity": 50,
           "buy_price": 8367.557593,
           "nse_tick": {
             "average_traded_price": 8575.08,
@@ -525,12 +517,10 @@
           "name": "DE-31-III",
           "bse_ticker": 204954372,
           "theoretical_value": 8665.72,
-          "holding": {
-            "total": 18,
-            "demat": 18,
-            "t1": 0,
-            "position": 0
-          },
+          "net_quantity": 18,
+          "demat_quantity": 18,
+          "t1_quantity": 0,
+          "position_quantity": 0,
           "buy_price": 8409.738444,
           "nse_tick": {
             "average_traded_price": 8583.31,
@@ -575,12 +565,10 @@
           "name": "FEB-32-IV",
           "bse_ticker": 204954884,
           "theoretical_value": 8657.83,
-          "holding": {
-            "total": 100,
-            "demat": 79,
-            "t1": 24,
-            "position": -3
-          },
+          "net_quantity": 100,
+          "demat_quantity": 79,
+          "t1_quantity": 24,
+          "position_quantity": -3,
           "buy_price": 8477.9167,
           "nse_tick": {
             "average_traded_price": 8656.18,
@@ -663,7 +651,7 @@
                 <td class="column-7">${product.interest_premium?.toFixed(2) ?? ''}</td>
                 <td class="column-8">${product.liquidity_premium?.toFixed(2) ?? ''}</td>
                 <td class="column-9" style="background-color: rgb(250, 230, 250)">${product.theoretical_value?.toFixed(2) ?? ''}</td>
-                <td class="column-10">${getHoldingVal(product.holding)}</td>
+                <td class="column-10">${getHoldingVal(product)}</td>
                 <td class="column-a1" style="background-color: ${nseColor}">${product.nse_tick?.average_traded_price?.toFixed(2) ?? ''}</td>
                 <td class="column-a2">${product.nse_tick?.volume_traded?.toString().padStart(5, ' ') ?? ''}</td>
                 <td class="column-a3 buy" style="background-color: ${nseBuyColor}">${getHighlightedValue(product.nse_tick?.buy?.price, product.nse_buy)} ${product.nse_tick?.buy?.quantity?.toString().padStart(2, ' ') ?? ''}:${product.nse_tick?.buy?.total_quantity}</td>
@@ -745,15 +733,14 @@
         bseHeader.colSpan = bseColspan;
     }
 
-    function getHoldingVal(holding) {
-        if (!holding) return '';
-        const totalPart = `<span style="color:black">${holding.total?.toString().padStart(5, ' ') ?? ''}</span>`;
-        if (holding.t1 !== 0 || holding.position !== 0) {
+    function getHoldingVal(prod) {
+        const totalPart = `<span style="color:black">${prod.net_quantity?.toString().padStart(5, ' ') ?? ''}</span>`;
+        if (prod.t1_quantity !== 0 || prod.position_quantity !== 0) {
             const format = (val, color) => val ? `<span style="color:${color}">${val}</span>` : '';
             const breakdownParts = [
-                format(holding.demat, 'blue'),
-                format(holding.t1, 'green'),
-                format(holding.position, 'red')
+                format(prod.demat_quantity, 'blue'),
+                format(prod.t1_quantity, 'green'),
+                format(prod.position_quantity, 'red')
             ].filter(Boolean);
             return `${totalPart} (${breakdownParts.join(':')})`;
         }
