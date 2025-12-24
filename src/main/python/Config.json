@@ -9,8 +9,5 @@
     "order": {
         "nse_circuit_limit": 0.1,
         "bse_circuit_limit": 0.1
-    },
-    "nse": {
-        "history": "/api/historicalOR/generateSecurityWiseHistoricalData?from={frm}&to={to}&symbol={symbol}&type=priceVolumeDeliverable&series=ALL"
     }
 }
