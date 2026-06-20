@@ -1,36 +1,3 @@
-## Content Aware Print margin Design extension
-Extend this image outward on all four sides by adding a 200-pixel content-aware border, 
-creating a final canvas of 3900 x 2650 pixels (the original 3500 x 2250 image centered 
-inside it).
-
-Requirements:
-- Keep the entire original image fully intact, unchanged, and centered. Do not crop, 
-  scale, shift, or alter any part of the existing content.
-- For the new 200px margin on each edge, seamlessly continue the existing background, 
-  colors, textures, gradients, and patterns that touch that edge. The extension must be 
-  a natural continuation — invisible seam, matching lighting and color.
-- Do NOT add any new objects, text, logos, subjects, or focal elements in the margin. 
-  The border is purely an extension of the surrounding background/imagery for print bleed.
-- If an edge is a solid or gradient color, simply extend that color/gradient. If it's a 
-  texture or scene, organically continue it.
-- Preserve sharpness and resolution; no blur, vignette, or visible transition line where 
-  the original meets the new margin.
-
-Purpose: this 200px extension is a bleed/cut margin for 1000 DPI printing, so the original 
-artwork must remain pristine and the added border just needs printable, edge-matched fill.
-
-
-## Game SKUs and Pricing Tiers
-
-| SKU | Price | Includes |
-| --- | --- | --- |
-| Pokemon Splendor Lite | ₹6000 | • Dual sided card based Pokeball Tokens<br>• Minimalistic 3D printed Organizer |
-| Pokemon Splendor | ₹12000 | • Dual sided transparent acrylic Pokeball Tokens<br>• 3D printed Organizer with token slots |
-| Pokemon Splendor Deluxe | ₹25000 | • Dual sided transparent acrylic Pokeball Tokens<br>• 3D printed book-style organizer with in-game card slots and Token slots<br>• Custom greeting message with customer name |
-
-Note: We can provide some limited time promotional discounts.
-
-
 ## Introduction
 
 #### Welcome message
@@ -104,3 +71,13 @@ The moment you have exactly 3 Pokemon tucked under your Player Card (i.e. you've
 
 ### Game End & Winning
 The round in which at least one player reaches 20 or more Trainer Points becomes the final round; the game ends once every player has completed that round so all players have had the same number of turns. Players then total their Trainer Points, and the highest total wins. Ties are broken in order by: most Pokemon evolved (cards tucked under the Player Card), then most Pokemon caught; if still tied, the players share victory.
+
+## Game SKUs and Pricing Tiers
+
+| SKU | Price | Includes |
+| --- | --- | --- |
+| Pokemon Splendor Lite | ₹6000 | • Dual sided card based Pokeball Tokens<br>• Minimalistic 3D printed Organizer |
+| Pokemon Splendor | ₹12000 | • Dual sided transparent acrylic Pokeball Tokens<br>• 3D printed Organizer with token slots |
+| Pokemon Splendor Deluxe | ₹25000 | • Dual sided transparent acrylic Pokeball Tokens<br>• 3D printed book-style organizer with in-game card slots and Token slots<br>• Custom greeting message with customer name |
+
+Note: We can provide some limited time promotional discounts.
